@@ -29,6 +29,14 @@ public class Cellule {
         return false;
     }
     
+    boolean supprimerOuvrier(Ouvrier un_ouvrier){
+        if(OuvrierCourant != null){
+            OuvrierCourant = null;
+            return true;
+        }
+        return false;
+    }
+    
     boolean placerNiveau(){
         if(NiveauCourant<3){
             NiveauCourant = NiveauCourant + 1;

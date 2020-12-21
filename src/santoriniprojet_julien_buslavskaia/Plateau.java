@@ -91,10 +91,22 @@ public class Plateau {
     boolean deplacementOuvrierPossible(int line1, int column1, int line2, int column2){
         if(Cellules[line1][column1].presenceOuvrier()==true){
             if(Cellules[line2][column2].presenceOuvrier()==false && Cellules[line2][column2].presenceDome()==false && Cellules[line2][column2].lireHauteur()<3){
-                if(Cellules[line1][column1].cellulesVoisines(Cellules[line2][column2])==true &&){
-                
-            }
-            }
-        }
-    }
+                if(cellulesVoisines(line1,column1,line2,column2)==true && niveauxCompatibles(line1,column1,line2,column2)){
+                    return true;
+                } return false;
+            } return false;
+        } return false;
+    } 
+    
+    boolean deplacerOuvrier(Ouvrier OuvrierCourant, int line1, int column1, int line2, int column2){
+        if(deplacementOuvrierPossible(line1,column1,line2,column2)==true){
+            Cellules[line1][column1].supprimerOuvrier(OuvrierCourant);
+            Cellules[line2][column2].affecterOuvrier(OuvrierCourant);
+            return true;
+        } 
+        else {
+            System.out.println("erreur : le deplacement n'est pas possible  Merci de choisir une autre case");
+            return false;
+        } 
+    } 
 }
