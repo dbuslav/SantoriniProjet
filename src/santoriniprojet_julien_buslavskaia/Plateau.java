@@ -109,4 +109,13 @@ public class Plateau {
             return false;
         } 
     } 
+    void viderPlateau() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                Cellules[i][j].NiveauCourant = 0;
+                Cellules[i][j].DomeCourant = false;
+            }
+        }
+    }
+
 }
