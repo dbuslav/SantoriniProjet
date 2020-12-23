@@ -15,7 +15,10 @@ public class SantoriniProjet_JULIEN_BUSLAVSKAIA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        System.out.println("Début de la partie de Santorini !");
+        Partie une_partie = new Partie();
+        une_partie.debuterPartie();
     }
     
 }

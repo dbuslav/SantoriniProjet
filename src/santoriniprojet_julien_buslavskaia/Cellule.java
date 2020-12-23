@@ -70,6 +70,15 @@ public class Cellule {
         return false;
     }
     
+    boolean presenceTelOuvrier(Ouvrier MonOuvrier){
+        if(OuvrierCourant==MonOuvrier){
+            return true;
+        }
+        return false;
+    }
+    
+    
+    
     boolean presenceNiveau(){
         if(NiveauCourant!=0){
             return true;
