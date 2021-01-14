@@ -37,6 +37,14 @@ public class Plateau {
         }
         else return false;   
     }
+    
+    Ouvrier presenceUnOuvrier(int line, int column){
+        Ouvrier ouvrier=Cellules[line][column].presenceUnOuvrier();
+        return ouvrier;
+        }
+        
+   
+    
     boolean presenceTelOuvrier(int line, int column, Ouvrier MonOuvrier){
         if(Cellules[line][column].presenceTelOuvrier(MonOuvrier)==true){
             return true;
@@ -113,7 +121,7 @@ public class Plateau {
             return false;
         }
     }
-    
+  
     boolean deplacementOuvrierPossible(int line1, int column1, int line2, int column2){
         if(Cellules[line1][column1].presenceOuvrier()==true){
             if(Cellules[line2][column2].presenceOuvrier()==false && Cellules[line2][column2].presenceDome()==false && Cellules[line2][column2].lireHauteur()<3){
@@ -126,7 +134,7 @@ public class Plateau {
     
     boolean deplacerOuvrier(Ouvrier OuvrierCourant, int line1, int column1, int line2, int column2){
         if(deplacementOuvrierPossible(line1,column1,line2,column2)==true){
-            Cellules[line1][column1].supprimerOuvrier(OuvrierCourant);
+            Cellules[line1][column1].supprimerOuvrier();
             Cellules[line2][column2].affecterOuvrier(OuvrierCourant);
             return true;
         } 
@@ -150,26 +158,26 @@ public class Plateau {
             for (int j = 0; j < 5; j++) {
                 if (Cellules[i][j].OuvrierCourant != null) {
                     if ("Gris".equals(Cellules[i][j].OuvrierCourant.Couleur)) {
-                        System.out.print("\u001B[0m G");
+                        System.out.print("\u001B[0m G ");
                     }
                     if ("Bleu".equals(Cellules[i][j].OuvrierCourant.Couleur)) {
-                        System.out.print("\u001B[0m B");
+                        System.out.print("\u001B[0m B ");
                     }
                 }
-                if (Cellules[i][j].NiveauCourant == 1) {
-                    System.out.print("\u001B[0m 1");
+                else if (Cellules[i][j].NiveauCourant == 1) {
+                    System.out.print("\u001B[0m 1 ");
                 }
-                if (Cellules[i][j].NiveauCourant == 2) {
-                    System.out.print("\u001B[0m 2");
+                else if (Cellules[i][j].NiveauCourant == 2) {
+                    System.out.print("\u001B[0m 2 ");
                 }
-                if (Cellules[i][j].NiveauCourant == 3) {
-                    System.out.print("\u001B[0m 3");
+                else if (Cellules[i][j].NiveauCourant == 3) {
+                    System.out.print("\u001B[0m 3 ");
                 }
-                if (Cellules[i][j].DomeCourant == true) {
-                    System.out.print("\u001B[0m D");
+                else if (Cellules[i][j].DomeCourant == true) {
+                    System.out.print("\u001B[0m D ");
                 } 
                 else {
-                    System.out.print("\u001B[0m o");
+                    System.out.print("\u001B[0m o ");
                 }
             }
             System.out.println(" " + (i+1));

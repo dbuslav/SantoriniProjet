@@ -18,7 +18,7 @@ public class SantoriniProjet_JULIEN_BUSLAVSKAIA {
         
         System.out.println("Début de la partie de Santorini !");
         Partie une_partie = new Partie();
-        une_partie.initialiserPartie();
+        une_partie.debuterPartie();
     }
     
 }

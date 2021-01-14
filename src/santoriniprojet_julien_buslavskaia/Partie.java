@@ -76,9 +76,21 @@ public class Partie {
             JoueurCourant = Listejoueurs[1];
         }
         
-        //On place les ouvriers
-        placer_ouvriers();
-
+        if (JoueurCourant == Listejoueurs[0]) {
+            System.out.println("Le joueur " +Listejoueurs[0].couleur +" va placer ses ouvriers");
+            placer_ouvriers();
+            System.out.println("Le joueur " +Listejoueurs[1].couleur +" va placer ses ouvriers");
+            placer_ouvriers();
+        } else {
+            JoueurCourant = Listejoueurs[1];
+            System.out.println("Le joueur " +Listejoueurs[1].couleur +" va placer ses ouvriers");
+            placer_ouvriers();
+            ProchainJoueur(JoueurCourant);
+            System.out.println("Le joueur " +Listejoueurs[0].couleur +" va placer ses ouvriers");
+            placer_ouvriers();
+        
+        }
+        
         plateauDeJeu.afficherPlateau();
     }
     
@@ -102,6 +114,7 @@ public class Partie {
             while (ligne > 5 || ligne < 1) {
                 System.out.println("Erreur : Entrer un choix qui existe :");
                 ligne = sc.nextInt();
+                
             }
             plateauDeJeu.placer_ouvrier(colonne,ligne,ouvrierCourant);
            
@@ -114,28 +127,36 @@ public class Partie {
         
         // action mouvement
         //choix de l'ouvrier
-        System.out.println("Quel ouvrier souhaitez vous déplacer");
-        int numero_ouvrier = sc.nextInt();
-        //problème : comment peut on choisir quel ouvrier deplacer : je vois pas comment decrire chaque ouvrier
-        //choix de la case où le deplacer
-        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de colonne compris entre 1 et 5");
+        System.out.println("Ou se situe l'ouvrier que souhaitez vous déplacer (ligne)");
+        int ligne_o = sc.nextInt();
+        System.out.println("Ou se situe l'ouvrier que souhaitez vous déplacer (colonne)");
         int colonne_o = sc.nextInt();
-        while (colonne_o > 5 || colonne_o < 1) {
+        Ouvrier ouvrier=plateauDeJeu.presenceUnOuvrier(ligne_o, colonne_o);
+        //choix de la case où le deplacer
+        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de ligne compris entre 1 et 5");
+        int ligne_d = sc.nextInt();
+        while (ligne_d > 5 || ligne_d < 1) {
         System.out.println("Erreur : Entrer un choix qui existe :");
-        colonne_o = sc.nextInt();
+        ligne_d = sc.nextInt();
         }
         //choix de la ligne
-        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de ligne compris entre 1 et 5");
-        int ligne_o = sc.nextInt();
-        while (ligne_o > 5 || ligne_o < 1) {
+        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de colonne compris entre 1 et 5");
+        int colonne_d = sc.nextInt();
+        while (colonne_d > 5 || colonne_d < 1) {
             System.out.println("Erreur : Entrer un choix qui existe :");
-            ligne_o = sc.nextInt();
+            colonne_d = sc.nextInt();
+        }
+        //deplacement
+        boolean test_depl= plateauDeJeu.deplacementOuvrierPossible(ligne_o, colonne_o, ligne_d, colonne_d);
+        if (test_depl==true){
+                plateauDeJeu.deplacerOuvrier(ouvrier, ligne_o, colonne_o, ligne_d, colonne_d);
+            ;
+        }
+            else {
+                System.out.println("Le déplacement est impossible: merci de choisir une cellule voisine ,dont le niveau est égal, inférieur de 1, ou supérieur de 1 à celui de la cellule ou est votre ouvrier, et ou il n'y a pas de dome\n" +
+"        ");
         }
         
-        //problème: comment savoir quelle est la position de l'ouvrier choisi
-        //ce que je veux faire : deplacementOuvrierPossible(cellule avec ouvrier, cellules choisie)
-        //si == true deplacer_ouvrier
-        //sinon print merci de choisir une cellule voisine ,dont le niveau est égal, inférieur de 1, ou supérieur de 1 à celui de la cellule ou est votre ouvrier, et ou il n'y a pas de dome
         
         // action construction
         //choix de la case où on contruit
@@ -151,9 +172,37 @@ public class Partie {
         while (ligne_c > 5 || ligne_c < 1) {
         System.out.println("Erreur : Entrer un choix qui existe :");
       }
+        plateauDeJeu.construireNiveau(ligne_c, colonne_c);
     return true;
     }
+
+
+void debuterPartie() {
+    int test=1;
+        initialiserPartie();
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            while (!tour_de_jeu()) {
+                System.out.println("Recommencez votre tour");
+            }
+            plateauDeJeu.afficherPlateau();
+
+            JoueurCourant = ProchainJoueur(JoueurCourant);
+        }while(test==1);
+        
+        }
 }
 
-     
+        
+        //} while (plateauDeJeu.etreGagnantePourJoueur(Listejoueurs[0]) != true && grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[1]) != true && grilleDeJeu.etreRemplie() != true);
+
+        //if (grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[0]) == true && grilleDeJeu.etreGagnantePourJoueur(Listejoueurs[1]) == true) {
+            //System.out.println("C'est " + JoueurCourant.Nom + " qui a gagné !");
+        //} else {
+           // System.out.println("C'est " + ProchainJoueur(JoueurCourant).Nom + " qui a gagné !");
+        //}
+//}
+        
+    
 

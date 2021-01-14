@@ -29,7 +29,7 @@ public class Cellule {
         return false;
     }
     
-    boolean supprimerOuvrier(Ouvrier un_ouvrier){
+    boolean supprimerOuvrier(){
         if(OuvrierCourant != null){
             OuvrierCourant = null;
             return true;
@@ -77,7 +77,11 @@ public class Cellule {
         return false;
     }
     
+    Ouvrier presenceUnOuvrier(){
+            return OuvrierCourant;
+    }
     
+
     
     boolean presenceNiveau(){
         if(NiveauCourant!=0){
