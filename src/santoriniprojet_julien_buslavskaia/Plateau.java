@@ -169,7 +169,7 @@ public class Plateau {
                     System.out.print("\u001B[0m D");
                 } 
                 else {
-                    System.out.print("\u001B[0m 0");
+                    System.out.print("\u001B[0m o");
                 }
             }
             System.out.println(" " + (i+1));
@@ -180,8 +180,16 @@ public class Plateau {
         System.out.println();
     }
     
-    void placer_ouvrier(int c , int l, Ouvrier ouvrierCourant){
-        Cellules[c][l].affecterOuvrier(ouvrierCourant);
+    boolean supprimer_ouvrier(int ligne, int colonne) {
+        if (Cellules[ligne][colonne].OuvrierCourant == null) {
+            return false;
+        }
+        Cellules[ligne][colonne].OuvrierCourant = null;
+        return true;
+    }
+    
+    void placer_ouvrier(int colonne , int ligne, Ouvrier ouvrierCourant){
+        Cellules[colonne][ligne].affecterOuvrier(ouvrierCourant);
     }
     
 }
