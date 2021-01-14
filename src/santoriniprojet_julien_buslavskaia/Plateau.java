@@ -61,8 +61,8 @@ public class Plateau {
         return false;
     }
     int ligneOuvrier(Ouvrier MonOuvrier){
-        for (int i = 0; i < 6; i++) {
-            for(int j=0; j<6; j++){
+        for (int i = 0; i < 5; i++) {
+            for(int j=0; j<5; j++){
                 if (Cellules[i][j].presenceTelOuvrier(MonOuvrier)==true){
                     return i;
                 }   
@@ -71,8 +71,8 @@ public class Plateau {
         return 0;
     }
     int colonneOuvrier(Ouvrier MonOuvrier){
-        for (int i = 0; i < 6; i++) {
-            for(int j=0; j<6; j++){
+        for (int i = 0; i < 5; i++) {
+            for(int j=0; j<5; j++){
                 if (Cellules[i][j].presenceTelOuvrier(MonOuvrier)==true){
                     return j;
                 }   
@@ -136,8 +136,8 @@ public class Plateau {
         } 
     } 
     void viderPlateau() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 Cellules[i][j].NiveauCourant = 0;
                 Cellules[i][j].DomeCourant = false;
             }
@@ -146,14 +146,14 @@ public class Plateau {
     
     void afficherPlateau() {
  
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
                 if (Cellules[i][j].OuvrierCourant != null) {
                     if ("Gris".equals(Cellules[i][j].OuvrierCourant.Couleur)) {
-                        System.out.print("\u001B[0m G ");
+                        System.out.print("\u001B[0m G");
                     }
                     if ("Bleu".equals(Cellules[i][j].OuvrierCourant.Couleur)) {
-                        System.out.print("\u001B[0m B ");
+                        System.out.print("\u001B[0m B");
                     }
                 }
                 if (Cellules[i][j].NiveauCourant == 1) {
@@ -167,13 +167,14 @@ public class Plateau {
                 }
                 if (Cellules[i][j].DomeCourant == true) {
                     System.out.print("\u001B[0m D");
-                } else {
-                    System.out.print("\u001B[0m C");
+                } 
+                else {
+                    System.out.print("\u001B[0m 0");
                 }
             }
             System.out.println(" " + (i+1));
         }
-        for(int i=0; i<6;i++){
+        for(int i=0; i<5;i++){
             System.out.print(" " + (i+1) + " ");
         }
         System.out.println();

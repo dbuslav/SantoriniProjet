@@ -150,8 +150,10 @@ public class Partie {
         int ligne_c = sc.nextInt();
         while (ligne_c > 5 || ligne_c < 1) {
         System.out.println("Erreur : Entrer un choix qui existe :");
-        
+      }
+    return true;
     }
+}
 
-    
+     
 
