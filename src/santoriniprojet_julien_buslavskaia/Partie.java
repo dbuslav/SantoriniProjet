@@ -76,21 +76,25 @@ public class Partie {
             JoueurCourant = Listejoueurs[1];
         }
         
-        if (JoueurCourant == Listejoueurs[0]) {
-            System.out.println("Le joueur " +Listejoueurs[0].couleur +" va placer ses ouvriers");
-            placer_ouvriers();
-            System.out.println("Le joueur " +Listejoueurs[1].couleur +" va placer ses ouvriers");
-            placer_ouvriers();
-        } else {
-            JoueurCourant = Listejoueurs[1];
-            System.out.println("Le joueur " +Listejoueurs[1].couleur +" va placer ses ouvriers");
-            placer_ouvriers();
-            ProchainJoueur(JoueurCourant);
-            System.out.println("Le joueur " +Listejoueurs[0].couleur +" va placer ses ouvriers");
-            placer_ouvriers();
+        //if (JoueurCourant == Listejoueurs[0]) {
+            //System.out.println("Le joueur " +Listejoueurs[0].couleur +" va placer ses ouvriers");
+            //placer_ouvriers();
+            //S//ystem.out.println("Le joueur " +Listejoueurs[1].couleur +" va placer ses ouvriers");
+           // placer_ouvriers();
+       // } else {
+            //JoueurCourant = Listejoueurs[1];
+          //  System.out.println("Le joueur " +Listejoueurs[1].couleur +" va placer ses ouvriers");
+           // placer_ouvriers();
+           // ProchainJoueur(JoueurCourant);
+            //System.out.println("Le joueur " +Listejoueurs[0].couleur +" va placer ses ouvriers");
+            //placer_ouvriers();
         
-        }
-        
+            //}
+        System.out.println("Le joueur " +JoueurCourant.couleur +" va placer ses ouvriers");
+        placer_ouvriers();
+        JoueurCourant=ProchainJoueur(JoueurCourant);
+        System.out.println("Le joueur " +JoueurCourant.couleur +" va placer ses ouvriers");
+        placer_ouvriers();
         plateauDeJeu.afficherPlateau();
     }
     
@@ -102,22 +106,23 @@ public class Partie {
             //definition ouvrierCourant
             Ouvrier ouvrierCourant=JoueurCourant.ListeOuvriers[i];
             //choix de la colonne
-            System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de colonne compris entre 1 et 5");
+            System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de colonne compris entre 0 et 4");
             int colonne = sc.nextInt();
-            while (colonne > 5 || colonne < 1) {
+            while (colonne > 4 || colonne < 0) {
             System.out.println("Erreur : Entrer un choix qui existe :");
             colonne = sc.nextInt();
             }
             //choix de la ligne
-            System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de ligne compris entre 1 et 5");
+            System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de ligne compris entre 0 et 4");
             int ligne = sc.nextInt();
-            while (ligne > 5 || ligne < 1) {
+            while (ligne > 4 || ligne < 0) {
                 System.out.println("Erreur : Entrer un choix qui existe :");
                 ligne = sc.nextInt();
-                
+             
             }
-            plateauDeJeu.placer_ouvrier(colonne,ligne,ouvrierCourant);
-           
+            plateauDeJeu.placer_ouvrier(ligne,colonne,ouvrierCourant);
+           System.out.println(" L'ouvrier " + i + " à été placé"); 
+           plateauDeJeu.afficherPlateau();
         }
         
     }
@@ -130,19 +135,19 @@ public class Partie {
         System.out.println("Ou se situe l'ouvrier que souhaitez vous déplacer (ligne)");
         int ligne_o = sc.nextInt();
         System.out.println("Ou se situe l'ouvrier que souhaitez vous déplacer (colonne)");
-        int colonne_o = sc.nextInt();
+        int colonne_o = sc.nextInt()-1;
         Ouvrier ouvrier=plateauDeJeu.presenceUnOuvrier(ligne_o, colonne_o);
         //choix de la case où le deplacer
-        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de ligne compris entre 1 et 5");
+        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de ligne compris entre 0 et 4");
         int ligne_d = sc.nextInt();
-        while (ligne_d > 5 || ligne_d < 1) {
+        while (ligne_d > 4 || ligne_d < 0) {
         System.out.println("Erreur : Entrer un choix qui existe :");
         ligne_d = sc.nextInt();
         }
         //choix de la ligne
-        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de colonne compris entre 1 et 5");
+        System.out.println("Ou voulez-vous placer votre ouvrier ? Merci de saisir un numéro de colonne compris entre 0 et 4");
         int colonne_d = sc.nextInt();
-        while (colonne_d > 5 || colonne_d < 1) {
+        while (colonne_d > 4 || colonne_d < 0) {
             System.out.println("Erreur : Entrer un choix qui existe :");
             colonne_d = sc.nextInt();
         }
@@ -160,16 +165,16 @@ public class Partie {
         
         // action construction
         //choix de la case où on contruit
-        System.out.println("Ou voulez-vous construire ? Merci de saisir un numéro de colonne compris entre 1 et 5");
+        System.out.println("Ou voulez-vous construire ? Merci de saisir un numéro de colonne compris entre 0 et 4");
         int colonne_c = sc.nextInt();
-        while (colonne_c > 5 || colonne_c < 1) {
+        while (colonne_c > 4 || colonne_c < 0) {
         System.out.println("Erreur : Entrer un choix qui existe :");
         colonne_c = sc.nextInt();
         }
         //choix de la ligne
-        System.out.println("Ou voulez-vous construire ? Merci de saisir un numéro de ligne compris entre 1 et 5");
+        System.out.println("Ou voulez-vous construire ? Merci de saisir un numéro de ligne compris entre 0 et 4");
         int ligne_c = sc.nextInt();
-        while (ligne_c > 5 || ligne_c < 1) {
+        while (ligne_c > 4 || ligne_c < 0) {
         System.out.println("Erreur : Entrer un choix qui existe :");
       }
         plateauDeJeu.construireNiveau(ligne_c, colonne_c);

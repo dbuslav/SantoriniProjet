@@ -26,6 +26,9 @@ public class Cellule {
             OuvrierCourant = un_ouvrier;
             return true;
         }
+        else{
+            System.out.println("un ouvrier est déjà sur cette case");
+        }
         return false;
     }
     

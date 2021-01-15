@@ -180,11 +180,17 @@ public class Plateau {
                     System.out.print("\u001B[0m o ");
                 }
             }
-            System.out.println(" " + (i+1));
+            System.out.print("|");
+            System.out.println(" " + (i));//pas i+1 pour qu'on se repère mieux
         }
         for(int i=0; i<5;i++){
-            System.out.print(" " + (i+1) + " ");
+            System.out.print("---");//permet de ne pas confondre les numéros de colonne et les niveaux construits
         }
+        System.out.println();
+        for(int i=0; i<5;i++){
+            System.out.print(" " + (i) + " ");//idem
+        }
+        
         System.out.println();
     }
     
@@ -196,8 +202,8 @@ public class Plateau {
         return true;
     }
     
-    void placer_ouvrier(int colonne , int ligne, Ouvrier ouvrierCourant){
-        Cellules[colonne][ligne].affecterOuvrier(ouvrierCourant);
+    void placer_ouvrier(int ligne , int colonne, Ouvrier ouvrierCourant){
+      Cellules[ligne][colonne].affecterOuvrier(ouvrierCourant);
     }
     
 }
